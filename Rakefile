@@ -27,7 +27,7 @@ def descriptor_hash
     },
     "services" => {
       "UpcaseService" => {
-        "singleton" => true,
+        "singleton" => false,
       }
     }
   }
