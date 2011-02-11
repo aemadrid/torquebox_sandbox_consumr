@@ -23,8 +23,14 @@ class UpcaseService
   protected
 
   def start_queue
+    puts "<<< UpcaseService >>> :: start_queue : sleeping ..."
+    sleep 15
     puts "<<< UpcaseService >>> :: start_queue : starting ..."
-    queue = TorqueBox::Messaging::Queue.new('/queues/upcase')
+    begin
+      queue = TorqueBox::Messaging::Queue.new('/queues/upcase')
+    rescue Exception => e
+      puts "<<< UpcaseService >>> :: start_queue : exception : #{e}\n#{e.backtrace}"
+    end
 
     while true do
       queue.receive_and_publish(:timeout => 500) do |message|
