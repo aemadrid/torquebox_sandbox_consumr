@@ -1,3 +1,7 @@
+require 'rubygems'
+require "bundler/setup"
+require 'org.torquebox.torquebox-messaging-client'
+
 class UpcaseService
   def initialize(options={})
     puts "<<< UpcaseService >>> :: initialize : starting ..."
