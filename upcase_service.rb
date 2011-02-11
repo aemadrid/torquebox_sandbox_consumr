@@ -25,7 +25,6 @@ class UpcaseService
   def start_queue
     puts "<<< UpcaseService >>> :: start_queue : starting ..."
     queue = TorqueBox::Messaging::Queue.new('/queues/upcase')
-    queue.start
 
     while true do
       queue.receive_and_publish(:timeout => 500) do |message|
@@ -37,7 +36,6 @@ class UpcaseService
       # Jump out of the loop if we're shutting down
       if @halt
         puts puts "<<< UpcaseService >>> :: start_queue : stopping ..."
-        queue.destroy
         break
       end
     end
